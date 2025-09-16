@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinny Fashion - Ladies & Girls Garments</title>
+    <style>
+        /*
+        ==========================================================================
+        TINNY FASHION - STYLESHEET
+        ==========================================================================
+        */
+
+        /*
+        --------------------------------------------------------------------------
+        1. Google Fonts Import
+        --------------------------------------------------------------------------
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;700&display=swap');
+        /* Add Noto Nastaliq Urdu for better Urdu rendering */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+
+        /*
+        --------------------------------------------------------------------------
+        2. CSS Custom Properties (Variables)
+        --------------------------------------------------------------------------
+        */
+        :root {
+            --color-primary: #E91E63; /* Vibrant Pink */
+            --color-secondary: #FFC107; /* Warm Amber/Gold */
+            --color-accent: #8E24AA; /* Rich Purple */
+            --color-background-light: #FFF8F0; /* Very Light Cream/Peach */
+            --color-background-medium: #FCE4EC; /* Light Pink */
+            --color-text-dark: #4A2328; /* Dark Brown/Maroon */
+            --color-text-light: #FAF5E9;
+            --color-white: #FFFFFF;
+            --color-border: #F48FB1; /* Soft Pink */
+
+            --font-primary: 'Poppins', sans-serif;
+            --font-headings: 'Playfair Display', serif;
+            --font-cursive: 'Dancing Script', cursive;
+            --font-urdu: 'Noto Nastaliq Urdu', serif;
+
+            --spacing-unit: 8px;
+            --spacing-xs: calc(var(--spacing-unit) * 1);   /* 8px */
+            --spacing-sm: calc(var(--spacing-unit) * 2);   /* 16px */
+            --spacing-md: calc(var(--spacing-unit) * 4);   /* 32px */
+            --spacing-lg: calc(var(--spacing-unit) * 8);   /* 64px */
+            --spacing-xl: calc(var(--spacing-unit) * 12);  /* 96px */
+
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 16px;
+
+            --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.1);
+
+            --transition-speed: 0.4s;
+            --transition-timing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /*
+        --------------------------------------------------------------------------
+        3. CSS Reset & Base Styles
+        --------------------------------------------------------------------------
+        */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-background-light);
+            color: var(--color-text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body.rtl {
+            direction: rtl;
+            font-family: var(--font-urdu);
+        }
+
+        body.rtl h1, body.rtl h2, body.rtl h3, body.rtl h4, body.rtl h5, body.rtl h6 {
+            font-family: var(--font-urdu);
+        }
+        body.rtl .font-regular {
+            font-family: var(--font-urdu);
+        }
+
+
+        /*
+        --------------------------------------------------------------------------
+        4. Typography
+        --------------------------------------------------------------------------
+        */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-headings);
+            color: var(--color-primary);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--color-secondary);
+            border-radius: 2px;
+            margin: var(--spacing-sm) auto 0;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        h4 {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+        }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+            max-width: 75ch;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        a:hover, a:focus {
+            color: var(--color-accent);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /*
+        --------------------------------------------------------------------------
+        5. Layout & Helpers
+        --------------------------------------------------------------------------
+        */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg) 0;
+        }
+
+        section {
+            padding: var(--spacing-lg) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-bg-pink {
+             background-color: var(--color-background-medium);
+        }
+        
+        .section-bg-white {
+            background-color: var(--color-white);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /*
+        --------------------------------------------------------------------------
+        6. Header & Navigation
+        --------------------------------------------------------------------------
+        */
+        .main-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color var(--transition-speed), padding var(--transition-speed);
+        }
+        
+        .main-header.scrolled {
+            position: fixed;
+            background-color: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-medium);
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) 5%;
+        }
+
+        .nav-logo {
+            font-family: var(--font-cursive);
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+        
+        .nav-controls {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: var(--spacing-md);
+        }
+        body.rtl .nav-links li {
+            margin-left: 0;
+            margin-right: var(--spacing-md);
+        }
+
+        .nav-links a {
+            font-family: var(--font-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--color-text-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: var(--spacing-xs) 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-secondary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform var(--transition-speed) var(--transition-timing);
+        }
+        body.rtl .nav-links a::after {
+            transform-origin: left;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        body.rtl .nav-links a:hover::after,
+        body.rtl .nav-links a:focus::after {
+            transform-origin: right;
+        }
+        
+        .nav-toggle {
+            display: none;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            z-index: 1001; /* Ensure it's above the nav menu */
+        }
+        
+        .hamburger {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--color-primary);
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 3px;
+            background-color: var(--color-primary);
+            left: 0;
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger::before { top: -10px; }
+        .hamburger::after { bottom: -10px; }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 15px;
+        }
+        body.rtl .lang-switcher {
+            margin-left: 0;
+            margin-right: 15px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--color-text-dark);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-primary);
+        }
+        .lang-btn.active,
+        .lang-btn:hover {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border-color: var(--color-primary);
+        }
+        .lang-btn[data-lang="ur"] {
+            font-size: 1.2rem;
+            font-family: var(--font-urdu);
+        }
+
+        /*
+        --------------------------------------------------------------------------
+        7. Hero Section
+        --------------------------------------------------------------------------
+        */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 100px;
+            background: url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png'), linear-gradient(to right, var(--color-background-medium), var(--color-background-light));
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .hero-text {
+            animation: fadeInRight 1s ease-out forwards;
+        }
+
+        .hero-text .subtitle {
+            font-family: var(--font-cursive);
+            font-size: 2.5rem;
+            color: var(--color-accent);
+        }
+        
+        .hero-text h1 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInLeft 1s ease-out forwards;
+        }
+        
+        .hero-image img {
+            border-radius: 50% 50% 50% 70% / 60% 50% 70% 50%;
+            box-shadow: var(--shadow-medium);
+            border: 10px solid var(--color-white);
+        }
+        
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        body.rtl @keyframes fadeInRight {
+             from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        body.rtl @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /*
+        --------------------------------------------------------------------------
+        8. About Us Section
+        --------------------------------------------------------------------------
+        */
+        #about .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 5px solid var(--color-secondary);
+            border-radius: var(--border-radius-lg);
+            z-index: -1;
+            transition: all var(--transition-speed) var(--transition-timing);
+        }
+        body.rtl .about-image::before {
+            left: auto;
+            right: -20px;
+        }
+
+        .about-image:hover::before {
+            transform: translate(10px, 10px);
+        }
+        body.rtl .about-image:hover::before {
+            transform: translate(-10px, 10px);
+        }
+
+        .about-content h3 {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .ratings {
+            margin-top: var(--spacing-md);
+            border-top: 2px solid var(--color-border);
+            padding-top: var(--spacing-md);
+        }
+
+        .ratings h4 {
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .rating-platform {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 600;
+        }
+
+        .rating-platform span {
+            margin-left: var(--spacing-sm);
+        }
+        body.rtl .rating-platform span {
+            margin-left: 0;
+            margin-right: var(--spacing-sm);
+        }
+
+        /*
+        --------------------------------------------------------------------------
+        8a. Timeline Section
+        --------------------------------------------------------------------------
+        */
+        .timeline-section {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--color-border);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        body.rtl .timeline::after {
+            left: auto;
+            right: 50%;
+            margin-left: 0;
+            margin-right: -3px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container.left {
+            left: 0;
+        }
+        body.rtl .timeline-container.left {
+            left: 50%;
+        }
+
+        .timeline-container.right {
+            left: 50%;
+        }
+        body.rtl .timeline-container.right {
+            left: 0;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--color-white);
+            border: 4px solid var(--color-secondary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        body.rtl .timeline-container::after {
+            right: auto;
+            left: -17px;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+        body.rtl .right::after {
+            left: auto;
+            right: -16px;
+        }
+        body.rtl .left::after {
+            left: -16px;
+        }
+
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-light);
+            text-align: left;
+        }
+        body.rtl .timeline-content {
+            text-align: right;
+        }
+        
+        .timeline-container .timeline-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .timeline-container.visible .timeline-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Media queries - Responsive timeline */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            body.rtl .timeline::after {
+                left: auto;
+                right: 31px;
+            }
+
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            body.rtl .timeline-container {
+                padding-left: 25px;
+                padding-right: 70px;
+            }
+
+            .timeline-container.right {
+                left: 0%;
+            }
+            body.rtl .timeline-container.left {
+                left: 0%;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+            body.rtl .left::after, body.rtl .right::after {
+                left: auto;
+                right: 15px;
+            }
+        }
+        
+        /*
+        --------------------------------------------------------------------------
+        9. Shop Section
+        --------------------------------------------------------------------------
+        */
+        .shop-controls {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--color-white);
+            border: 2px solid var(--color-border);
+            color: var(--color-primary);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--color-primary);
+            color: var(--color-white);
+            border-color: var(--color-primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .shop-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .product-card {
+            background-color: var(--color-white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            position: relative;
+            display: none; /* Initially hidden for filtering */
+        }
+        
+        .product-card.show {
+            display: block;
+            animation: scaleUp 0.5s ease;
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .product-image {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-tag {
+            position: absolute;
+            top: var(--spacing-sm);
+            left: var(--spacing-sm);
+            background-color: var(--color-secondary);
+            color: var(--color-text-dark);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius-sm);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        body.rtl .product-tag {
+            left: auto;
+            right: var(--spacing-sm);
+        }
+
+        .product-info {
+            padding: var(--spacing-sm);
+            text-align: center;
+        }
+
+        .product-info h4 {
+            color: var(--color-text-dark);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .product-category {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .shop-footer {
+            margin-top: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: var(--color-text-light);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .shop-footer p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0;
+            font-family: var(--font-headings);
+        }
+        body.rtl .shop-footer p {
+            font-family: var(--font-urdu);
+        }
+
+
+        /*
+        --------------------------------------------------------------------------
+        10. Trending Section
+        --------------------------------------------------------------------------
+        */
+        #trending {
+            background-color: var(--color-white);
+        }
+        /* Uses same .product-card styles from Shop section */
+
+
+        /*
+        --------------------------------------------------------------------------
+        11. Customer Reviews Section
+        --------------------------------------------------------------------------
+        */
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            height: 350px; /* Set a fixed height */
+        }
+
+        .testimonial-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-white);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-lg);
+            border-left: 10px solid var(--color-secondary);
+            box-shadow: var(--shadow-medium);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+        body.rtl .testimonial-slide {
+            border-left: none;
+            border-right: 10px solid var(--color-secondary);
+        }
+
+        .testimonial-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .review-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-sm);
+            color: #555;
+        }
+        
+        .review-text::before {
+            content: '“';
+            font-family: var(--font-headings);
+            font-size: 4rem;
+            color: var(--color-border);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+            opacity: 0.5;
+        }
+        body.rtl .review-text::before {
+            left: auto;
+            right: 20px;
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            text-align: right;
+        }
+        body.rtl .review-author {
+            text-align: left;
+        }
+        
+        .review-author span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #777;
+        }
+
+        .slider-dots {
+            text-align: center;
+            margin-top: var(--spacing-sm);
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: var(--color-border);
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .dot.active {
+            background-color: var(--color-primary);
+        }
+
+        /*
+        --------------------------------------------------------------------------
+        12. Style Blog Section
+        --------------------------------------------------------------------------
+        */
+        #blog .container {
+            max-width: 1200px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .blog-post-card {
+            background: var(--color-white);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .blog-post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .blog-card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-card-content {
+            padding: var(--spacing-sm);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-meta {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .blog-card-title {
+            font-family: var(--font-headings);
+            color: var(--color-text-dark);
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .blog-card-excerpt {
+            font-size: 0.95rem;
+            flex-grow: 1;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .read-more-link {
+            font-weight: 700;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+
+        /*
+        --------------------------------------------------------------------------
+        13. Contact Section
+        --------------------------------------------------------------------------
+        */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: var(--spacing-lg);
+            background: var(--color-white);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .contact-info h3 {
+            color: var(--color-accent);
+        }
+
+        .contact-info p {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-right: var(--spacing-sm);
+        }
+        body.rtl .info-item i {
+            margin-right: 0;
+            margin-left: var(--spacing-sm);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 2px solid var(--color-border);
+            border-radius: var(--border-radius-md);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: border-color var(--transition-speed);
+        }
+        body.rtl .form-control {
+            font-family: var(--font-urdu);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .error-message {
+            color: red;
+            font-size: 0.8rem;
+            display: none;
+        }
+
+        .btn-submit {
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            color: var(--color-white);
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            box-shadow: var(--shadow-light);
+            text-transform: uppercase;
+        }
+
+        .btn-submit:hover {
+            box-shadow: var(--shadow-medium);
+            transform: scale(1.05);
+        }
+
+        /*
+        --------------------------------------------------------------------------
+        14. Footer
+        --------------------------------------------------------------------------
+        */
+        .main-footer {
+            background-color: var(--color-text-dark);
+            color: var(--color-text-light);
+            padding-top: var(--spacing-lg);
+        }
+        
+        .footer-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .footer-widget h4 {
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-sm);
+            font-family: var(--font-headings);
+        }
+        
+        .footer-widget p, .footer-widget a {
+            color: #ccc;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-white);
+            padding-left: 5px;
+        }
+        body.rtl .footer-links a:hover {
+            padding-left: 0;
+            padding-right: 5px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin-right: var(--spacing-sm);
+            font-size: 1.5rem;
+            transition: transform var(--transition-speed);
+        }
+        body.rtl .social-links a {
+            margin-right: 0;
+            margin-left: var(--spacing-sm);
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: var(--spacing-sm) 0;
+            margin-top: var(--spacing-md);
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+        }
+        
+        /*
+        --------------------------------------------------------------------------
+        15. Responsive Design (Media Queries)
+        --------------------------------------------------------------------------
+        */
+
+        /* Tablets and small desktops */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-image {
+                grid-row: 1; /* Move image to top on smaller screens */
+                margin-bottom: var(--spacing-md);
+            }
+            .hero-image img {
+                width: 70%;
+                margin: 0 auto;
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Mobile devices */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--color-background-light);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.5s ease-in-out;
+            }
+            body.rtl .nav-links {
+                right: auto;
+                left: -100%;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.5s ease-in-out;
+            }
+            
+            .nav-links.nav-active {
+                right: 0;
+            }
+            body.rtl .nav-links.nav-active {
+                right: auto;
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: var(--spacing-sm) 0;
+            }
+            
+            .nav-toggle {
+                display: block;
+            }
+
+            .lang-switcher {
+                margin-right: 15px;
+            }
+            body.rtl .lang-switcher {
+                margin-right: 0;
+                margin-left: 15px;
+            }
+
+            .nav-toggle.active .hamburger {
+                background-color: transparent;
+            }
+
+            .nav-toggle.active .hamburger::before {
+                transform: rotate(45deg) translate(-7px, 8px);
+            }
+
+            .nav-toggle.active .hamburger::after {
+                 transform: rotate(-45deg) translate(-7px, -8px);
+            }
+            
+            #about .container {
+                grid-template-columns: 1fr;
+            }
+            .about-image {
+                margin-bottom: var(--spacing-md);
+            }
+        }
+        
+        /*
+        --------------------------------------------------------------------------
+        16. Additional UI elements for "complicative" design
+        --------------------------------------------------------------------------
+        */
+        
+        .decorative-swoosh {
+            position: absolute;
+            width: 150%;
+            height: 200px;
+            background-color: var(--color-background-medium);
+            z-index: -1;
+            transform-origin: top left;
+        }
+        
+        #about .decorative-swoosh {
+            top: -50px;
+            left: -20%;
+            transform: rotate(-5deg);
+        }
+        
+        #reviews .decorative-swoosh {
+            bottom: -50px;
+            right: -20%;
+            left: auto;
+            transform: rotate(-5deg);
+            background-color: var(--color-white);
+        }
+
+        /*
+        --------------------------------------------------------------------------
+        17. Floating Action Button (WhatsApp)
+        --------------------------------------------------------------------------
+        */
+        .whatsapp-fab {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        body.rtl .whatsapp-fab {
+            right: auto;
+            left: 25px;
+        }
+
+        .whatsapp-fab:hover {
+            transform: scale(1.1);
+            color: #FFF;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================= Header ======================= -->
+    <header class="main-header" id="mainHeader">
+        <nav class="navbar">
+            <a href="#" class="nav-logo">Tinny Fashion</a>
+            <div class="nav-controls">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about" data-translate-key="nav-about">About</a></li>
+                    <li><a href="#shop" data-translate-key="nav-shop">Shop</a></li>
+                    <li><a href="#trending" data-translate-key="nav-trending">Trending</a></li>
+                    <li><a href="#reviews" data-translate-key="nav-reviews">Reviews</a></li>
+                    <li><a href="#blog" data-translate-key="nav-blog">Style Blog</a></li>
+                    <li><a href="#contact" data-translate-key="nav-contact">Contact</a></li>
+                </ul>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="en" aria-label="Switch to English">EN</button>
+                    <button class="lang-btn" data-lang="hi" aria-label="Switch to Hindi">हि</button>
+                    <button class="lang-btn" data-lang="ur" aria-label="Switch to Urdu">اردو</button>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ======================= Hero Section ======================= -->
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <span class="subtitle" data-translate-key="hero-subtitle">Exquisite Styles For You</span>
+                    <h1 data-translate-key="hero-title">Discover Your Inner Diva</h1>
+                    <p data-translate-key="hero-para">At Tinny Fashion, we bring you a curated collection of ladies' and girls' wear that blends traditional charm with modern elegance. Perfect for every occasion, crafted with love.</p>
+                    <a href="#shop" class="btn-submit" data-translate-key="hero-button">Explore Collection</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1552874869-5c39EC9288dc?q=80&w=1887&auto=format&fit=crop" alt="Stylish woman in a pink dress">
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= About Us Section ======================= -->
+        <section id="about" class="section-bg-white">
+            <div class="decorative-swoosh"></div>
+            <div class="container">
+                <div class="about-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1594665490912-998a4a49c513?q=80&w=1887&auto=format&fit=crop" alt="Fashion designer at work">
+                </div>
+                <div class="about-content fade-in">
+                    <h2 data-translate-key="about-title">Our Story, Woven with Passion</h2>
+                    <h3 data-translate-key="about-subtitle">Crafting Elegance for Every Woman</h3>
+                    <p data-translate-key="about-para1">Tinny Fashion was born from a dream to make high-quality, beautiful garments accessible to women in semi-urban and rural areas. We believe that style is a way to express who you are without having to speak. Our collections for ladies and girls are designed with a deep understanding of local tastes, vibrant colors, and comfortable fabrics.</p>
+                    <p data-translate-key="about-para2">We are more than just a shop; we are a part of the community, celebrating the grace and strength of every woman.</p>
+                    <div class="ratings">
+                        <h4 data-translate-key="about-ratings-title">Our Ratings Across Platforms</h4>
+                        <div class="rating-platform">★★★★★ <span data-translate-key="about-rating1">(4.9/5 on Google Reviews)</span></div>
+                        <div class="rating-platform">★★★★★ <span data-translate-key="about-rating2">(4.8/5 on Local Listings)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-section">
+                <div class="container">
+                    <h2 class="fade-in" data-translate-key="journey-title">Our Journey</h2>
+                    <div class="timeline">
+                        <div class="timeline-container left">
+                            <div class="timeline-content">
+                                <h3 data-translate-key="journey-date1">Aug 2023</h3>
+                                <p data-translate-key="journey-desc1">The dream begins. We secured the perfect spot for our shop and started building our vision from the ground up.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-container right">
+                            <div class="timeline-content">
+                                <h3 data-translate-key="journey-date2">Sept 13, 2023</h3>
+                                <p data-translate-key="journey-desc2">Grand Opening! Our doors opened for the first time, and we made our very first sale. A day we'll never forget!</p>
+                            </div>
+                        </div>
+                        <div class="timeline-container left">
+                            <div class="timeline-content">
+                                <h3 data-translate-key="journey-date3">Oct 15, 2023</h3>
+                                <p data-translate-key="journey-desc3">Adding a little sparkle. We introduced a curated collection of cosmetic items to complement our garments.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-container right">
+                            <div class="timeline-content">
+                                <h3 data-translate-key="journey-date4">Nov 7, 2023</h3>
+                                <p data-translate-key="journey-desc4">Expanding our collection. We introduced a new line of tops and readymade items, offering more variety to our customers.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-container left">
+                            <div class="timeline-content">
+                                <h3 data-translate-key="journey-date5">Jan 15, 2024</h3>
+                                <p data-translate-key="journey-desc5">For the young fashionistas. We added a new range of girls' pants to our collection, catering to the younger generation.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-container right">
+                            <div class="timeline-content">
+                                <h3 data-translate-key="journey-date6">Feb-Mar 2024</h3>
+                                <p data-translate-key="journey-desc6">Refining our focus. We phased out some cosmetic items and gents' kids' garments to specialize in what we do best: ladies' and girls' fashion.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-container left">
+                            <div class="timeline-content">
+                                <h3 data-translate-key="journey-date7">Jan 1, 2025</h3>
+                                <p data-translate-key="journey-desc7">A fresh new look. We renovated and modified our shop to create an even better shopping experience for our growing family of happy customers.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-container right">
+                            <div class="timeline-content">
+                                <h3 data-translate-key="journey-date8">Present</h3>
+                                <p data-translate-key="journey-desc8">Still growing, still smiling. We continue to evolve, driven by the love and support of our happy customers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= Shop Section ======================= -->
+        <section id="shop" class="section-bg-pink">
+            <div class="container">
+                <h2 class="fade-in" data-translate-key="shop-title">Our Latest Collection</h2>
+                <div class="shop-controls fade-in">
+                    <button class="filter-btn active" data-filter="all" data-translate-key="shop-filter-all">All</button>
+                    <button class="filter-btn" data-filter="ladies" data-translate-key="shop-filter-ladies">Ladies Wear</button>
+                    <button class="filter-btn" data-filter="girls" data-translate-key="shop-filter-girls">Girls Wear</button>
+                </div>
+                <div class="shop-gallery">
+                    <!-- Products -->
+                    <div class="product-card" data-category="ladies">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1581855695637-805188f40a34?q=80&w=1887&auto=format&fit=crop" alt="Ladies Garment 1">
+                            <span class="product-tag" data-translate-key="product-tag-new">New Arrival</span>
+                        </div>
+                        <div class="product-info"><h4 data-translate-key="product-name1">Crimson Bloom Kurti Set</h4><p class="product-category" data-translate-key="shop-filter-ladies">Ladies Wear</p></div>
+                    </div>
+                    <div class="product-card" data-category="girls">
+                        <div class="product-image"><img src="https://images.unsplash.com/photo-1620707442149-140a85535543?q=80&w=1887&auto=format&fit=crop" alt="Girls Garment 1"><span class="product-tag" data-translate-key="product-tag-best">Bestseller</span></div>
+                        <div class="product-info"><h4 data-translate-key="product-name2">Sunshine Twirl Frock</h4><p class="product-category" data-translate-key="shop-filter-girls">Girls Wear</p></div>
+                    </div>
+                    <div class="product-card" data-category="ladies">
+                        <div class="product-image"><img src="https://images.unsplash.com/photo-1617922001434-c7a421458a44?q=80&w=1887&auto=format&fit=crop" alt="Ladies Garment 2"></div>
+                        <div class="product-info"><h4 data-translate-key="product-name3">Royal Indigo Anarkali</h4><p class="product-category" data-translate-key="shop-filter-ladies">Ladies Wear</p></div>
+                    </div>
+                    <div class="product-card" data-category="girls">
+                        <div class="product-image"><img src="https://images.unsplash.com/photo-1596637013294-4d3e8c973a2a?q=80&w=1887&auto=format&fit=crop" alt="Girls Garment 2"></div>
+                        <div class="product-info"><h4 data-translate-key="product-name4">Lilac Dreams Lehenga</h4><p class="product-category" data-translate-key="shop-filter-girls">Girls Wear</p></div>
+                    </div>
+                     <div class="product-card" data-category="ladies">
+                        <div class="product-image"><img src="https://images.unsplash.com/photo-1617922001530-98d073995213?q=80&w=1887&auto=format&fit=crop" alt="Ladies Garment 3"></div>
+                        <div class="product-info"><h4 data-translate-key="product-name5">Pastel Petal Salwar</h4><p class="product-category" data-translate-key="shop-filter-ladies">Ladies Wear</p></div>
+                    </div>
+                     <div class="product-card" data-category="girls">
+                        <div class="product-image"><img src="https://plus.unsplash.com/premium_photo-1675279010915-643c3ac85ac0?q=80&w=1887&auto=format&fit=crop" alt="Girls Garment 3"></div>
+                        <div class="product-info"><h4 data-translate-key="product-name6">Floral Fun Top & Skirt</h4><p class="product-category" data-translate-key="shop-filter-girls">Girls Wear</p></div>
+                    </div>
+                </div>
+                <div class="shop-footer fade-in">
+                    <p data-translate-key="shop-footer">Come to our shop to know more about the product and also explore more new variety!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= Past Trending Section ======================= -->
+        <section id="trending" class="section-bg-white">
+            <div class="container">
+                <h2 class="fade-in" data-translate-key="trending-title">Styles You've Loved</h2>
+                <div class="shop-gallery">
+                    <div class="product-card show" data-category="past">
+                        <div class="product-image"><img src="https://images.unsplash.com/photo-1584377353977-626a45dd5173?q=80&w=1887&auto=format&fit=crop" alt="Trending 1"></div>
+                        <div class="product-info"><h4 data-translate-key="trending-name1">Golden Weave Saree</h4><p class="product-category" data-translate-key="trending-cat">From Last Season</p></div>
+                    </div>
+                    <div class="product-card show" data-category="past">
+                        <div class="product-image"><img src="https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?q=80&w=1887&auto=format&fit=crop" alt="Trending 2"></div>
+                        <div class="product-info"><h4 data-translate-key="trending-name2">Emerald Green Gown</h4><p class="product-category" data-translate-key="trending-cat">From Last Season</p></div>
+                    </div>
+                    <div class="product-card show" data-category="past">
+                        <div class="product-image"><img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=2070&auto=format&fit=crop" alt="Trending 3"></div>
+                        <div class="product-info"><h4 data-translate-key="trending-name3">Classic Bandhani Suit</h4><p class="product-category" data-translate-key="trending-cat">From Last Season</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= Customer Reviews Section ======================= -->
+        <section id="reviews" class="section-bg-pink">
+            <div class="decorative-swoosh"></div>
+            <div class="container">
+                <h2 class="fade-in" data-translate-key="reviews-title">Words from Our Happy Customers</h2>
+                <div class="testimonial-slider fade-in">
+                    <div class="testimonial-slide active">
+                        <p class="review-text" data-translate-key="review-text1">I absolutely love the collection at Tinny Fashion! The quality of the clothes is amazing and the designs are so unique. It feels like they design just for me. Highly recommended!</p>
+                        <p class="review-author" data-translate-key="review-author1">Priya S.<span data-translate-key="review-author-role1">Regular Customer</span></p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="review-text" data-translate-key="review-text2">The best place to shop for both me and my daughter. We always find something we love. The staff is also very friendly and helpful. A true gem in our town.</p>
+                        <p class="review-author" data-translate-key="review-author2">Anjali M.<span data-translate-key="review-author-role2">Mother & Daughter Duo</span></p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="review-text" data-translate-key="review-text3">I bought my festive wear from here and received so many compliments! The fit was perfect and the fabric felt so rich. Thank you, Tinny Fashion, for making my festival special.</p>
+                        <p class="review-author" data-translate-key="review-author3">Sunita K.<span data-translate-key="review-author-role3">Festive Shopper</span></p>
+                    </div>
+                </div>
+                 <div class="slider-dots"></div>
+            </div>
+        </section>
+        
+        <!-- ======================= Style Blog Section ======================= -->
+        <section id="blog" class="section-bg-white">
+            <div class="container">
+                <h2 class="fade-in" data-translate-key="blog-title">Our Style Journal</h2>
+                <div class="blog-grid">
+                    <article class="blog-post-card fade-in">
+                        <div class="blog-card-image"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1920&auto=format&fit=crop" alt="Blog post 1"></div>
+                        <div class="blog-card-content">
+                            <p class="blog-card-meta" data-translate-key="blog-meta1">Sep 10, 2025 | Style Tips</p>
+                            <h4 class="blog-card-title" data-translate-key="blog-title1">5 Ways to Style Your Kurti for Any Occasion</h4>
+                            <p class="blog-card-excerpt" data-translate-key="blog-excerpt1">From office wear to a festive celebration, the versatile kurti can be your best friend. Discover how to accessorize...</p>
+                            <a href="#" class="read-more-link" data-translate-key="blog-readmore">Read More &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="blog-post-card fade-in">
+                        <div class="blog-card-image"><img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?q=80&w=2070&auto=format&fit=crop" alt="Blog post 2"></div>
+                        <div class="blog-card-content">
+                             <p class="blog-card-meta" data-translate-key="blog-meta2">Sep 02, 2025 | Fabric Care</p>
+                            <h4 class="blog-card-title" data-translate-key="blog-title2">Caring for Your Handloom Garments</h4>
+                            <p class="blog-card-excerpt" data-translate-key="blog-excerpt2">Handloom fabrics are a treasure. Learn the best practices to wash, dry, and store them to ensure they last a lifetime...</p>
+                            <a href="#" class="read-more-link" data-translate-key="blog-readmore">Read More &rarr;</a>
+                        </div>
+                    </article>
+                     <article class="blog-post-card fade-in">
+                        <div class="blog-card-image"><img src="https://images.unsplash.com/photo-1617922001530-98d073995213?q=80&w=1887&auto=format&fit=crop" alt="Blog post 3"></div>
+                        <div class="blog-card-content">
+                            <p class="blog-card-meta" data-translate-key="blog-meta3">Aug 25, 2025 | Trends</p>
+                            <h4 class="blog-card-title" data-translate-key="blog-title3">The Hottest Colors for the Upcoming Festive Season</h4>
+                            <p class="blog-card-excerpt" data-translate-key="blog-excerpt3">Get ready to shine! We are unveiling the color palette that will dominate the festive season this year. Think rich jewels...</p>
+                            <a href="#" class="read-more-link" data-translate-key="blog-readmore">Read More &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= Contact Section ======================= -->
+        <section id="contact" class="section-bg-pink">
+            <div class="container">
+                <h2 class="fade-in" data-translate-key="contact-title">Get In Touch</h2>
+                <div class="contact-wrapper fade-in">
+                    <div class="contact-info">
+                        <h3 data-translate-key="contact-subtitle">We'd Love to Hear From You</h3>
+                        <p data-translate-key="contact-para">Whether you have a question about our products, a suggestion, or a complaint, our team is ready to answer all your questions. Your feedback is valuable to us!</p>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-translate-key="contact-address">123 Fashion Street, Near Market Square, YourCity, Pin-000000</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone-alt"></i>
+                             <span data-translate-key="contact-phone">+91 12345 67890</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span data-translate-key="contact-email">contact@tinnyfashion.com</span>
+                        </div>
+                    </div>
+                    <form id="contactForm" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-control" placeholder="Your Name" required data-translate-key="form-placeholder-name">
+                            <p class="error-message" data-translate-key="form-error-name">Please enter your name.</p>
+                        </div>
+                         <div class="form-group">
+                            <input type="email" id="email" class="form-control" placeholder="Your Email" required data-translate-key="form-placeholder-email">
+                             <p class="error-message" data-translate-key="form-error-email">Please enter a valid email.</p>
+                        </div>
+                         <div class="form-group">
+                            <textarea id="message" class="form-control" placeholder="Your Message or Complaint" required data-translate-key="form-placeholder-message"></textarea>
+                            <p class="error-message" data-translate-key="form-error-message">Please enter your message.</p>
+                        </div>
+                        <button type="submit" class="btn-submit" data-translate-key="form-button-send">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- ======================= Footer ======================= -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-wrapper">
+                <div class="footer-widget">
+                    <h4 data-translate-key="footer-about-title">About Tinny Fashion</h4>
+                    <p data-translate-key="footer-about-para">Your friendly neighborhood fashion store, bringing you the latest and most beautiful designs in ladies and girls garments. Quality and customer happiness are our top priorities.</p>
+                </div>
+                 <div class="footer-widget">
+                    <h4 data-translate-key="footer-links-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about" data-translate-key="nav-about">About Us</a></li>
+                        <li><a href="#shop" data-translate-key="nav-shop">Shop</a></li>
+                        <li><a href="#reviews" data-translate-key="nav-reviews">Reviews</a></li>
+                        <li><a href="#contact" data-translate-key="nav-contact">Contact</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-widget">
+                    <h4 data-translate-key="footer-follow-title">Follow Us</h4>
+                    <p data-translate-key="footer-follow-para">Stay updated with our new arrivals and offers!</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-translate-key="footer-copyright">&copy; 2025 Tinny Fashion. All Rights Reserved. Designed with ♥.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================= WhatsApp FAB ======================= -->
+    <a href="https://wa.me/917078098123" class="whatsapp-fab" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Font Awesome Kit for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+    /*
+    ==========================================================================
+    TINNY FASHION - JAVASCRIPT
+    ==========================================================================
+    */
+    
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // -----------------------------------------------------------------------
+        // TRANSLATION ENGINE
+        // -----------------------------------------------------------------------
+        const translations = {
+            'nav-about': { en: 'About', hi: 'हमारे बारे में', ur: 'ہمارے بارے میں' },
+            'nav-shop': { en: 'Shop', hi: 'दुकान', ur: 'دکان' },
+            'nav-trending': { en: 'Trending', hi: 'ट्रेंडिंग', ur: 'ٹرینڈنگ' },
+            'nav-reviews': { en: 'Reviews', hi: 'समीक्षाएं', ur: 'جائزے' },
+            'nav-blog': { en: 'Style Blog', hi: 'स्टाइल ब्लॉग', ur: 'اسٹائل بلاگ' },
+            'nav-contact': { en: 'Contact', hi: 'संपर्क', ur: 'رابطہ' },
+            'hero-subtitle': { en: 'Exquisite Styles For You', hi: 'आपके लिए शानदार स्टाइल', ur: 'آپ کے لیے شاندار اسٹائلز' },
+            'hero-title': { en: 'Discover Your Inner Diva', hi: 'अपनी भीतरी दिवा को खोजें', ur: 'اپنی اندرونی دیوا کو دریافت کریں' },
+            'hero-para': { en: "At Tinny Fashion, we bring you a curated collection of ladies' and girls' wear that blends traditional charm with modern elegance. Perfect for every occasion, crafted with love.", hi: 'टिनी फैशन में, हम आपके लिए महिलाओं और लड़कियों के कपड़ों का एक संग्रह लाते हैं जो पारंपरिक आकर्षण को आधुनिक सुंदरता के साथ मिलाता है। हर अवसर के लिए बिल्कुल सही, प्यार से बनाया गया।', ur: 'ٹنی فیشن میں، ہم آپ کے لیے خواتین اور لڑکیوں کے لباس کا ایک مجموعہ لاتے ہیں جو روایتی دلکشی کو جدید خوبصورتی کے ساتھ ملاتا ہے۔ ہر موقع کے لیے بہترین، محبت سے تیار کردہ۔' },
+            'hero-button': { en: 'Explore Collection', hi: 'संग्रह देखें', ur: 'مجموعہ دریافت کریں' },
+            'about-title': { en: 'Our Story, Woven with Passion', hi: 'हमारी कहानी, जुनून से बुनी हुई', ur: 'ہماری کہانی، جذبے سے بُنی ہوئی' },
+            'about-subtitle': { en: 'Crafting Elegance for Every Woman', hi: 'हर महिला के लिए सुंदरता रचना', ur: 'ہر عورت کے لیے خوبصورتی کی تخلیق' },
+            'about-para1': { en: "Tinny Fashion was born from a dream to make high-quality, beautiful garments accessible to women in semi-urban and rural areas. We believe that style is a way to express who you are without having to speak. Our collections for ladies and girls are designed with a deep understanding of local tastes, vibrant colors, and comfortable fabrics.", hi: 'टिनी फैशन का जन्म अर्ध-शहरी और ग्रामीण क्षेत्रों की महिलाओं के लिए उच्च-गुणवत्ता, सुंदर वस्त्र उपलब्ध कराने के सपने से हुआ था। हमारा मानना ​​है कि स्टाइल यह व्यक्त करने का एक तरीका है कि आप बिना बोले कौन हैं। महिलाओं और लड़कियों के लिए हमारे संग्रह स्थानीय स्वाद, जीवंत रंग और आरामदायक कपड़ों की गहरी समझ के साथ डिजाइन किए गए हैं।', ur: 'ٹنی فیشن کا جنم نیم شہری اور دیہی علاقوں کی خواتین کے لیے اعلیٰ معیار کے، خوبصورت لباس کو قابل رسائی بنانے کے خواب سے ہوا تھا۔ ہمارا ماننا ہے کہ اسٹائل یہ بتانے کا ایک طریقہ ہے کہ آپ کون ہیں بغیر بولے۔ خواتین اور لڑکیوں کے لیے ہمارے مجموعے مقامی ذوق، متحرک رنگوں، اور آرام دہ کپڑوں کی گہری سمجھ کے ساتھ ڈیزائن کیے گئے ہیں۔' },
+            'about-para2': { en: 'We are more than just a shop; we are a part of the community, celebrating the grace and strength of every woman.', hi: 'हम सिर्फ एक दुकान से बढ़कर हैं; हम समुदाय का एक हिस्सा हैं, हर महिला की कृपा और ताकत का जश्न मनाते हैं।', ur: 'ہم صرف ایک دکان سے زیادہ ہیں؛ ہم کمیونٹی کا حصہ ہیں، ہر عورت کے فضل اور طاقت کا جشن مناتے ہیں۔' },
+            'about-ratings-title': { en: 'Our Ratings Across Platforms', hi: 'विभिन्न प्लेटफार्मों पर हमारी रेटिंग', ur: 'پلیٹ فارمز پر ہماری درجہ بندی' },
+            'about-rating1': { en: '(4.9/5 on Google Reviews)', hi: '(Google समीक्षाओं पर 4.9/5)', ur: '(گوگل جائزوں پر 4.9/5)' },
+            'about-rating2': { en: '(4.8/5 on Local Listings)', hi: '(स्थानीय लिस्टिंग पर 4.8/5)', ur: '(مقامی فہرستوں پر 4.8/5)' },
+            'journey-title': { en: 'Our Journey', hi: 'हमारा सफर', ur: 'ہمارا سفر' },
+            'journey-date1': { en: 'Aug 2023', hi: 'अगस्त 2023', ur: 'اگست 2023' },
+            'journey-desc1': { en: 'The dream begins. We secured the perfect spot for our shop and started building our vision from the ground up.', hi: 'सपना शुरू होता है। हमने अपनी दुकान के लिए सही जगह सुरक्षित की और अपनी दृष्टि को शुरू से बनाना शुरू किया।', ur: 'خواب شروع ہوتا ہے۔ ہم نے اپنی دکان کے لیے بہترین جگہ محفوظ کی اور اپنے وژن کو شروع سے تعمیر کرنا شروع کیا۔' },
+            'journey-date2': { en: 'Sept 13, 2023', hi: '13 सितंबर, 2023', ur: '13 ستمبر، 2023' },
+            'journey-desc2': { en: "Grand Opening! Our doors opened for the first time, and we made our very first sale. A day we'll never forget!", hi: 'भव्य उद्घाटन! हमारे दरवाजे पहली बार खुले, और हमने अपनी पहली बिक्री की। एक ऐसा दिन जिसे हम कभी नहीं भूलेंगे!', ur: 'شاندار افتتاح! ہمارے دروازے پہلی بار کھلے، اور ہم نے اپنی پہلی فروخت کی۔ ایک ایسا دن جسے ہم کبھی نہیں بھولیں گے!' },
+            'journey-date3': { en: 'Oct 15, 2023', hi: '15 अक्टूबर, 2023', ur: '15 اکتوبر، 2023' },
+            'journey-desc3': { en: 'Adding a little sparkle. We introduced a curated collection of cosmetic items to complement our garments.', hi: 'थोड़ी चमक जोड़ते हुए। हमने अपने कपड़ों के पूरक के लिए कॉस्मेटिक वस्तुओं का एक क्यूरेटेड संग्रह पेश किया।', ur: 'تھوڑی سی چمک شامل کرتے ہوئے۔ ہم نے اپنے لباس کو مکمل کرنے کے لیے کاسمیٹک اشیاء کا ایک منتخب مجموعہ متعارف کرایا۔' },
+            'journey-date4': { en: 'Nov 7, 2023', hi: '7 नवंबर, 2023', ur: '7 نومبر، 2023' },
+            'journey-desc4': { en: 'Expanding our collection. We introduced a new line of tops and readymade items, offering more variety to our customers.', hi: 'हमारे संग्रह का विस्तार। हमने टॉप और रेडीमेड आइटम की एक नई लाइन पेश की, जिससे हमारे ग्राहकों को अधिक विविधता मिली।', ur: 'ہمارے مجموعے کو وسعت دیتے ہوئے۔ ہم نے ٹاپس اور ریڈی میڈ آئٹمز کی ایک نئی لائن متعارف کرائی، جو ہمارے صارفین کو مزید ورائٹی پیش کرتی ہے۔' },
+            'journey-date5': { en: 'Jan 15, 2024', hi: '15 जनवरी, 2024', ur: '15 جنوری، 2024' },
+            'journey-desc5': { en: "For the young fashionistas. We added a new range of girls' pants to our collection, catering to the younger generation.", hi: 'युवा फैशनपरस्तों के लिए। हमने अपने संग्रह में लड़कियों की पैंट की एक नई रेंज जोड़ी, जो युवा पीढ़ी की जरूरतों को पूरा करती है।', ur: 'نوجوان فیشنسٹاس کے لیے۔ ہم نے اپنے مجموعہ میں لڑکیوں کی پینٹس کی ایک نئی رینج شامل کی، جو نوجوان نسل کو پورا کرتی ہے۔' },
+            'journey-date6': { en: 'Feb-Mar 2024', hi: 'फरवरी-मार्च 2024', ur: 'فروری-مارچ 2024' },
+            'journey-desc6': { en: "Refining our focus. We phased out some cosmetic items and gents' kids' garments to specialize in what we do best: ladies' and girls' fashion.", hi: 'हमारे फोकस को परिष्कृत करना। हमने कुछ कॉस्मेटिक आइटम और जेंट्स किड्स गारमेंट्स को चरणबद्ध तरीके से समाप्त कर दिया ताकि हम जो सबसे अच्छा करते हैं उसमें विशेषज्ञता हासिल कर सकें: महिलाओं और लड़कियों का फैशन।', ur: 'ہماری توجہ کو بہتر بناتے ہوئے۔ ہم نے کچھ کاسمیٹک اشیاء اور مردانہ بچوں کے لباس کو مرحلہ وار ختم کیا تاکہ ہم جس چیز میں بہترین ہیں اس میں مہارت حاصل کر سکیں: خواتین اور لڑکیوں کا فیشن۔' },
+            'journey-date7': { en: 'Jan 1, 2025', hi: '1 जनवरी, 2025', ur: '1 جنوری، 2025' },
+            'journey-desc7': { en: 'A fresh new look. We renovated and modified our shop to create an even better shopping experience for our growing family of happy customers.', hi: 'एक नया रूप। हमने अपने खुश ग्राहकों के बढ़ते परिवार के लिए और भी बेहतर खरीदारी का अनुभव बनाने के लिए अपनी दुकान का नवीनीकरण और संशोधन किया।', ur: 'ایک تازہ نیا روپ۔ ہم نے اپنے خوش صارفین کے بڑھتے ہوئے خاندان کے لیے خریداری کا ایک بہتر تجربہ بنانے کے لیے اپنی دکان کی تزئین و آرائش اور ترمیم کی۔' },
+            'journey-date8': { en: 'Present', hi: 'वर्तमान', ur: 'موجودہ' },
+            'journey-desc8': { en: 'Still growing, still smiling. We continue to evolve, driven by the love and support of our happy customers.', hi: 'अभी भी बढ़ रहे हैं, अभी भी मुस्कुरा रहे हैं। हम अपने खुश ग्राहकों के प्यार और समर्थन से प्रेरित होकर विकसित होते रहते हैं।', ur: 'اب بھی بڑھ رہے ہیں، اب بھی مسکرا رہے ہیں۔ ہم اپنے خوش صارفین کی محبت اور حمایت سے کارفرما، ترقی کرتے رہتے ہیں۔' },
+            'shop-title': { en: 'Our Latest Collection', hi: 'हमारा नवीनतम संग्रह', ur: 'ہمارا تازہ ترین مجموعہ' },
+            'shop-filter-all': { en: 'All', hi: 'सभी', ur: 'سب' },
+            'shop-filter-ladies': { en: 'Ladies Wear', hi: 'महिलाओं के वस्त्र', ur: 'خواتین کا لباس' },
+            'shop-filter-girls': { en: 'Girls Wear', hi: 'लड़कियों के वस्त्र', ur: 'لڑکیوں کا لباس' },
+            'product-tag-new': { en: 'New Arrival', hi: 'नया आगमन', ur: 'نیا آیا' },
+            'product-tag-best': { en: 'Bestseller', hi: 'सबसे ज्यादा बिकने वाला', ur: 'سب سے زیادہ فروخت ہونے والا' },
+            'product-name1': { en: 'Crimson Bloom Kurti Set', hi: 'क्रिमसन ब्लूम कुर्ती सेट', ur: 'کرمسن بلوم کرتی سیٹ' },
+            'product-name2': { en: 'Sunshine Twirl Frock', hi: 'सनशाइन ट्वर्ल फ्रॉक', ur: 'سن شائن ٹورل فراک' },
+            'product-name3': { en: 'Royal Indigo Anarkali', hi: 'रॉयल इंडिगो अनारकली', ur: 'رائل انڈیگو انارکلی' },
+            'product-name4': { en: 'Lilac Dreams Lehenga', hi: 'लिलैक ड्रीम्स लहंगा', ur: 'لیلاک ڈریمز لہنگا' },
+            'product-name5': { en: 'Pastel Petal Salwar', hi: 'पेस्टल पेटल सलवार', ur: 'پیسٹل پیٹل سلوار' },
+            'product-name6': { en: 'Floral Fun Top & Skirt', hi: 'फ्लोरल फन टॉप और स्कर्ट', ur: 'فلورل فن ٹاپ اور اسکرٹ' },
+            'shop-footer': { en: 'Come to our shop to know more about the product and also explore more new variety!', hi: 'उत्पाद के बारे में अधिक जानने के लिए हमारी दुकान पर आएं और नई किस्मों का भी पता लगाएं!', ur: 'پروڈکٹ کے بارے میں مزید جاننے کے لیے ہماری دکان پر آئیں اور مزید نئی ورائٹی بھی دریافت کریں!' },
+            'trending-title': { en: "Styles You've Loved", hi: 'वे स्टाइल जो आपको पसंद आए', ur: 'وہ اسٹائل جو آپ نے پسند کیے ہیں' },
+            'trending-name1': { en: 'Golden Weave Saree', hi: 'गोल्डन वीव साड़ी', ur: 'گولڈن ویو ساڑھی' },
+            'trending-name2': { en: 'Emerald Green Gown', hi: 'एमरल्ड ग्रीन गाउन', ur: 'ایمرالڈ گرین گاؤن' },
+            'trending-name3': { en: 'Classic Bandhani Suit', hi: 'क्लासिक बंधनी सूट', ur: 'کلاسک بندھانی سوٹ' },
+            'trending-cat': { en: 'From Last Season', hi: 'पिछले सीजन से', ur: 'پچھلے سیزن سے' },
+            'reviews-title': { en: 'Words from Our Happy Customers', hi: 'हमारे खुश ग्राहकों के शब्द', ur: 'ہمارے خوش صارفین کے الفاظ' },
+            'review-text1': { en: 'I absolutely love the collection at Tinny Fashion! The quality of the clothes is amazing and the designs are so unique. It feels like they design just for me. Highly recommended!', hi: 'मुझे टिनी फैशन का संग्रह बहुत पसंद है! कपड़ों की गुणवत्ता अद्भुत है और डिजाइन बहुत अनूठे हैं। ऐसा लगता है जैसे वे सिर्फ मेरे लिए डिजाइन करते हैं। अत्यधिक सिफारिशित!', ur: 'مجھے ٹنی فیشن کا مجموعہ بہت پسند ہے! کپڑوں کا معیار حیرت انگیز ہے اور ڈیزائن بہت منفرد ہیں۔ ایسا لگتا ہے جیسے وہ صرف میرے لیے ڈیزائن کرتے ہیں۔ انتہائی سفارش کی جاتی ہے!' },
+            'review-author1': { en: 'Priya S.', hi: 'प्रिया एस.', ur: 'پریا ایس۔' },
+            'review-author-role1': { en: 'Regular Customer', hi: 'नियमित ग्राहक', ur: 'باقاعدہ گاہک' },
+            'review-text2': { en: 'The best place to shop for both me and my daughter. We always find something we love. The staff is also very friendly and helpful. A true gem in our town.', hi: 'मेरे और मेरी बेटी दोनों के लिए खरीदारी करने के लिए सबसे अच्छी जगह। हम हमेशा कुछ ऐसा पाते हैं जो हमें पसंद है। कर्मचारी भी बहुत मिलनसार और मददगार हैं। हमारे शहर में एक सच्चा रत्न।', ur: 'میرے اور میری بیٹی دونوں کے لیے خریداری کرنے کی بہترین جگہ۔ ہم ہمیشہ کچھ ایسا ڈھونڈتے ہیں جو ہمیں پسند ہو۔ عملہ بھی بہت دوستانہ اور مددگار ہے۔ ہمارے شہر میں ایک حقیقی منی۔' },
+            'review-author2': { en: 'Anjali M.', hi: 'अंजलि एम.', ur: 'انجلی ایم۔' },
+            'review-author-role2': { en: 'Mother & Daughter Duo', hi: 'माँ-बेटी की जोड़ी', ur: 'ماں بیٹی کی جوڑی' },
+            'review-text3': { en: 'I bought my festive wear from here and received so many compliments! The fit was perfect and the fabric felt so rich. Thank you, Tinny Fashion, for making my festival special.', hi: 'मैंने यहां से अपने त्योहार के कपड़े खरीदे और बहुत सारी तारीफें मिलीं! फिट एकदम सही था और कपड़ा बहुत समृद्ध महसूस हुआ। टिनी फैशन, मेरे त्योहार को खास बनाने के लिए धन्यवाद।', ur: 'میں نے یہاں سے اپنے تہوار کے کپڑے خریدے اور بہت ساری تعریفیں وصول کیں! فٹ بالکل सही تھا اور کپڑا بہت امیر محسوس ہوا۔ ٹنی فیشن، میرے تہوار کو خاص بنانے کے لیے آپ کا شکریہ۔' },
+            'review-author3': { en: 'Sunita K.', hi: 'सुनीता के.', ur: 'سنیتا کے۔' },
+            'review-author-role3': { en: 'Festive Shopper', hi: 'त्योहार की खरीदार', ur: 'تہوار کی خریدار' },
+            'blog-title': { en: 'Our Style Journal', hi: 'हमारा स्टाइल जर्नल', ur: 'ہمارا اسٹائل جرنل' },
+            'blog-meta1': { en: 'Sep 10, 2025 | Style Tips', hi: '10 सितंबर, 2025 | स्टाइल टिप्स', ur: '10 ستمبر، 2025 | اسٹائل ٹپس' },
+            'blog-title1': { en: '5 Ways to Style Your Kurti for Any Occasion', hi: 'किसी भी अवसर के लिए अपनी कुर्ती को स्टाइल करने के 5 तरीके', ur: 'کسی بھی موقع کے لیے اپنی کرتی کو اسٹائل کرنے کے 5 طریقے' },
+            'blog-excerpt1': { en: 'From office wear to a festive celebration, the versatile kurti can be your best friend. Discover how to accessorize...', hi: 'ऑफिस वियर से लेकर उत्सव समारोह तक, बहुमुखी कुर्ती आपकी सबसे अच्छी दोस्त हो सकती है। एक्सेसराइज़ करने का तरीका जानें...', ur: 'آفس ویئر سے لے کر تہوار کی تقریب تک، ورسٹائل کرتی آپ کی بہترین دوست ہو سکتی ہے۔ دریافت کریں کہ کس طرح لوازمات...', },
+            'blog-readmore': { en: 'Read More →', hi: 'और पढ़ें →', ur: 'مزید پڑھیں →' },
+            'blog-meta2': { en: 'Sep 02, 2025 | Fabric Care', hi: '02 सितंबर, 2025 | फैब्रिक केयर', ur: '02 ستمبر، 2025 | فیبرک کی دیکھ بھال' },
+            'blog-title2': { en: 'Caring for Your Handloom Garments', hi: 'अपने हथकरघा वस्त्रों की देखभाल', ur: 'اپنے ہینڈلوم گارمنٹس کی دیکھ بھال' },
+            'blog-excerpt2': { en: 'Handloom fabrics are a treasure. Learn the best practices to wash, dry, and store them to ensure they last a lifetime...', hi: 'हथकरघा कपड़े एक खजाना हैं। उन्हें धोने, सुखाने और स्टोर करने के सर्वोत्तम तरीकों को जानें ताकि वे जीवन भर चलें...', ur: 'ہینڈلوم کپڑے ایک خزانہ ہیں۔ انہیں دھونے، خشک کرنے اور ذخیرہ کرنے کے بہترین طریقے سیکھیں تاکہ یہ یقینی بنایا جا سکے کہ وہ زندگی بھر چلیں۔..', },
+            'blog-meta3': { en: 'Aug 25, 2025 | Trends', hi: '25 अगस्त, 2025 | ट्रेंड्स', ur: '25 اگست، 2025 | رجحانات' },
+            'blog-title3': { en: 'The Hottest Colors for the Upcoming Festive Season', hi: 'आगामी त्योहारी सीजन के लिए सबसे हॉट रंग', ur: 'آنے والے تہوار کے موسم کے لیے سب سے گرم رنگ' },
+            'blog-excerpt3': { en: 'Get ready to shine! We are unveiling the color palette that will dominate the festive season this year. Think rich jewels...', hi: 'चमकने के लिए तैयार हो जाओ! हम उस रंग पैलेट का अनावरण कर रहे हैं जो इस साल त्योहारी सीजन पर हावी होगा। अमीर रत्नों के बारे में सोचें...', ur: 'چمکنے کے لیے تیار ہو جاؤ! ہم اس رنگ پیلیٹ کی نقاب کشائی کر رہے ہیں جو اس سال تہوار کے موسم پر غلبہ حاصل کرے گا۔ امیر زیورات کے بارے میں سوچیں...', },
+            'contact-title': { en: 'Get In Touch', hi: 'संपर्क में रहें', ur: 'رابطے میں رہیں' },
+            'contact-subtitle': { en: "We'd Love to Hear From You", hi: 'हमें आपसे सुनना अच्छा लगेगा', ur: 'ہمیں آپ سے سننا پسند آئے گا' },
+            'contact-para': { en: 'Whether you have a question about our products, a suggestion, or a complaint, our team is ready to answer all your questions. Your feedback is valuable to us!', hi: 'चाहे आपके पास हमारे उत्पादों के बारे में कोई प्रश्न हो, कोई सुझाव हो, या कोई शिकायत हो, हमारी टीम आपके सभी सवालों का जवाब देने के लिए तैयार है। आपकी प्रतिक्रिया हमारे लिए मूल्यवान है!', ur: 'چاہے آپ کے پاس ہماری مصنوعات کے بارے میں کوئی سوال ہو، کوئی تجویز ہو، یا کوئی شکایت ہو، ہماری ٹیم آپ کے تمام سوالات کا جواب دینے کے لیے تیار ہے۔ آپ کی رائے ہمارے لیے قیمتی ہے!' },
+            'contact-address': { en: '123 Fashion Street, Near Market Square, YourCity, Pin-000000', hi: '123 फैशन स्ट्रीट, मार्केट स्क्वायर के पास, आपका शहर, पिन-000000', ur: '123 فیشن اسٹریٹ، مارکیٹ اسکوائر کے قریب، آپ کا شہر، پن-000000' },
+            'contact-phone': { en: '+91 12345 67890', hi: '+91 12345 67890', ur: '+91 12345 67890' },
+            'contact-email': { en: 'contact@tinnyfashion.com', hi: 'contact@tinnyfashion.com', ur: 'contact@tinnyfashion.com' },
+            'form-placeholder-name': { en: 'Your Name', hi: 'आपका नाम', ur: 'آپ کا نام' },
+            'form-error-name': { en: 'Please enter your name.', hi: 'कृपया अपना नाम दर्ज करें।', ur: 'براہ کرم اپنا نام درج کریں۔' },
+            'form-placeholder-email': { en: 'Your Email', hi: 'आपका ईमेल', ur: 'آپ کا ای میل' },
+            'form-error-email': { en: 'Please enter a valid email.', hi: 'कृपया एक वैध ईमेल दर्ज करें।', ur: 'براہ کرم ایک درست ای میل درج کریں۔' },
+            'form-placeholder-message': { en: 'Your Message or Complaint', hi: 'आपका संदेश या शिकायत', ur: 'آپ کا پیغام یا شکایت' },
+            'form-error-message': { en: 'Please enter your message.', hi: 'कृपया अपना संदेश दर्ज करें।', ur: 'براہ کرم اپنا پیغام درج کریں۔' },
+            'form-button-send': { en: 'Send Message', hi: 'संदेश भेजें', ur: 'پیغام بھیجیں' },
+            'footer-about-title': { en: 'About Tinny Fashion', hi: 'टिनी फैशन के बारे में', ur: 'ٹنی فیشن کے بارے میں' },
+            'footer-about-para': { en: 'Your friendly neighborhood fashion store, bringing you the latest and most beautiful designs in ladies and girls garments. Quality and customer happiness are our top priorities.', hi: 'आपका दोस्ताना पड़ोस का फैशन स्टोर, जो आपको महिलाओं और लड़कियों के कपड़ों में नवीनतम और सबसे खूबसूरत डिजाइन लाता है। गुणवत्ता और ग्राहकों की खुशी हमारी सर्वोच्च प्राथमिकताएं हैं।', ur: 'آپ کا دوستانہ پڑوس کا فیشن اسٹور، جو آپ کو خواتین اور لڑکیوں کے لباس میں جدید ترین اور خوبصورت ڈیزائن لاتا ہے۔ معیار اور گاہکوں کی خوشی ہماری اولین ترجیحات ہیں۔' },
+            'footer-links-title': { en: 'Quick Links', hi: 'त्वरित लिंक', ur: 'فوری لنکس' },
+            'footer-follow-title': { en: 'Follow Us', hi: 'हमें फॉलो करें', ur: 'ہمیں فالو کریں' },
+            'footer-follow-para': { en: 'Stay updated with our new arrivals and offers!', hi: 'हमारे नए आगमन और ऑफ़र से अपडेट रहें!', ur: 'ہماری نئی آمد اور پیشکشوں کے ساتھ اپ ڈیٹ رہیں!' },
+            'footer-copyright': { en: '© 2025 Tinny Fashion. All Rights Reserved. Designed with ♥.', hi: '© 2025 टिनी फैशन। सर्वाधिकार सुरक्षित। ♥ के साथ डिजाइन किया गया।', ur: '© 2025 ٹنی فیشن۔ جملہ حقوق محفوظ ہیں. ♥ کے ساتھ ڈیزائن کیا گیا ہے۔' }
+        };
+
+        const switchLanguage = (lang) => {
+            // Set RTL for Urdu
+            document.body.classList.toggle('rtl', lang === 'ur');
+
+            // Translate all elements with data-translate-key
+            document.querySelectorAll('[data-translate-key]').forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                const translation = translations[key] ? translations[key][lang] : null;
+
+                if (translation) {
+                    // Handle placeholders separately
+                    if (element.placeholder !== undefined) {
+                        element.placeholder = translation;
+                    } else {
+                        element.innerHTML = translation;
+                    }
+                }
+            });
+
+            // Save language choice to localStorage
+            localStorage.setItem('selectedLanguage', lang);
+        };
+
+        // -----------------------------------------------------------------------
+        // 1. Sticky Header on Scroll
+        // -----------------------------------------------------------------------
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // -----------------------------------------------------------------------
+        // 2. Mobile Navigation Toggle
+        // -----------------------------------------------------------------------
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            navToggle.classList.toggle('active');
+        });
+        
+        // Close nav when a link is clicked
+        document.querySelectorAll('#navLinks a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navLinks.classList.contains('nav-active')) {
+                    navLinks.classList.remove('nav-active');
+                    navToggle.classList.remove('active');
+                }
+            });
+        });
+
+        // -----------------------------------------------------------------------
+        // 3. Shop Product Filter
+        // -----------------------------------------------------------------------
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('#shop .product-card');
+
+        // Show all products initially
+        productCards.forEach(card => card.classList.add('show'));
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Manage active button state
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.dataset.filter;
+                
+                productCards.forEach(card => {
+                    card.classList.remove('show'); // Hide all first
+                    // Use a short timeout for re-flow, allowing animation to trigger again
+                    setTimeout(() => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.classList.add('show');
+                        }
+                    }, 10);
+                });
+            });
+        });
+
+        // -----------------------------------------------------------------------
+        // 4. Testimonial Slider
+        // -----------------------------------------------------------------------
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dotsContainer = document.querySelector('.slider-dots');
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Create dots
+        if (dotsContainer) { 
+            slides.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.dataset.slide = i;
+                dotsContainer.appendChild(dot);
+            });
+            const dots = document.querySelectorAll('.dot');
+            
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                slides[n].classList.add('active');
+                dots[n].classList.add('active');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            // Click on dots to change slide
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    currentSlide = parseInt(e.target.dataset.slide);
+                    showSlide(currentSlide);
+                    resetInterval();
+                });
+            });
+            
+            function startInterval() {
+                slideInterval = setInterval(nextSlide, 5000); 
+            }
+
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startInterval();
+            }
+
+            startInterval();
+        }
+
+        // -----------------------------------------------------------------------
+        // 5. Contact Form Validation
+        // -----------------------------------------------------------------------
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+            
+            [name, email, message].forEach(input => {
+                input.nextElementSibling.style.display = 'none';
+            });
+            
+            if (name.value.trim() === '') {
+                name.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+                email.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+            
+            if (message.value.trim() === '') {
+                message.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            }
+        });
+
+        // -----------------------------------------------------------------------
+        // 6. Scroll Animations (Fade-in effect)
+        // -----------------------------------------------------------------------
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // -----------------------------------------------------------------------
+        // 7. Timeline Animation on Scroll
+        // -----------------------------------------------------------------------
+        const timelineItems = document.querySelectorAll('.timeline-container');
+
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+        
+        timelineItems.forEach(item => {
+            timelineObserver.observe(item);
+        });
+        
+        // -----------------------------------------------------------------------
+        // 8. Language Switcher Logic
+        // -----------------------------------------------------------------------
+        const langButtons = document.querySelectorAll('.lang-btn');
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                langButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const selectedLang = button.dataset.lang;
+                switchLanguage(selectedLang);
+            });
+        });
+
+        // Check for saved language on page load
+        const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+        // Set the active button
+        langButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === savedLang);
+        });
+        // Apply the saved language translation
+        switchLanguage(savedLang);
+
+    });
+    </script>
+
+</body>
+</html>
